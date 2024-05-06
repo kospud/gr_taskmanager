@@ -1,0 +1,22 @@
+.login{
+
+    border-radius: 30px;
+    width: max-content;
+    height: max-content;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 2px 2px 50px  rgb(165, 165, 165);
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 5%;
+    margin: 25%;
+  }
+  
+  .login_data{
+    display: flex;
+    flex-direction: column;
+    
+  }
+  p{
+    text-align: center;
+  }
+  
