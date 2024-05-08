@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom"
 import { MenuItemProps } from "../../types"
 import { SvgIcon } from "@mui/material";
+import { memo } from "react";
 
-const MenuItem = (props: MenuItemProps) => {
+const MenuItem = memo((props: MenuItemProps) => {
 
     const linkStyle = {
         textDecoration: "none",
@@ -19,6 +20,6 @@ const MenuItem = (props: MenuItemProps) => {
             </Link>
         </li>
     )
-}
+})
 
 export default MenuItem;

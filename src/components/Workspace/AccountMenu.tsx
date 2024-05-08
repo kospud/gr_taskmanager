@@ -30,7 +30,8 @@ const AccountMenu=()=>{
             authorized: false,
             userName: '',
             userEmail: '',
-            token: ''
+            token: '',
+            userID: 0
         })
     }
     return (

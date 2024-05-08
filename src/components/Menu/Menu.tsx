@@ -2,6 +2,7 @@ import { Folder, Task, Analytics, Settings } from "@mui/icons-material";
 import MenuItem from './MenuItem'
 import { WORKSPACE_TASKS_ROUTE, WORKSPACE_PROJECTS_ROUTE, WORKSPACE_SETTINGS_ROUTE, WORKSPACE_ANALYTICS_ROUTE } from "../../utils/consts";
 import { MenuItemProps } from "../../types";
+import { memo } from "react";
 
 const menuItems: MenuItemProps[] = [
     {
@@ -26,7 +27,7 @@ const menuItems: MenuItemProps[] = [
     }
 ];
 
-const Menu = () => {
+const Menu = memo(() => {
 
     return (
         <div className="menu">
@@ -35,6 +36,6 @@ const Menu = () => {
             </ul>
         </div>
     )
-}
+})
 
 export default Menu;

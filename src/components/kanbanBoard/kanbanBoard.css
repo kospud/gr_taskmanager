@@ -4,43 +4,60 @@
 }
 
 .columnContainer{
-    background-color: rgb(212, 212, 212);
+    display: flex;
+    flex-direction: column;
     margin: 1%;
-    min-width: 200px;
+    min-width: 240px;
     flex-shrink: 0;
     flex-grow: 1;
 }
 
 .columnTitle{
     text-align: center;
-    background-color: rgb(192, 192, 192);
     display: flex;
     justify-content: space-between;
-    padding-left: 10%;
-    padding-right: 10%;
-    width: 80%;
+    border-bottom: 1px solid rgb(165, 165, 165);
+    padding-left: 5%;
+    padding-right: 5%;
+    width: 90%;
+    font-size: 120%;
+    font-weight: 500;
 }
 
 .columnContent{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 
 }
 
 .columnTitleText{
-
+    white-space: nowrap;
+    overflow: hidden;
+	text-overflow: ellipsis;
+    max-width: 90%;
 }
 .columnTitleCount{
-
+    margin-left: 5%;
 }
 
 .task{
     background-color: rgb(252, 252, 252);
-    min-width: 150px;
-    max-width: 200px;
-    min-height: 80px;
+    min-width: 200px;
+    min-height: 100px;
+    max-width: 320px;
     border-radius: 5px;
     margin: 2%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
+
 .draggable{
-    background-color: rgb(233, 233, 233);
+    opacity: 0.7;
 }
+

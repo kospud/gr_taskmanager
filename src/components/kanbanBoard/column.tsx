@@ -2,7 +2,7 @@ import { SortableContext } from "@dnd-kit/sortable";
 import { useDroppable } from "@dnd-kit/core";
 import type { Column, TaskType } from "../../types"
 import Task from "./Task";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 interface ColumnProps {
     column: Column,
@@ -15,6 +15,8 @@ const ColumnContainer = ({column, tasks}: ColumnProps) => {
         return tasks.map(task => task.id)
     }, [tasks])
 
+    const [tasksCount, setCount]=useState(tasks.length)
+    
     const { setNodeRef } = useDroppable({
         id: column.id,
         data: {
@@ -23,13 +25,14 @@ const ColumnContainer = ({column, tasks}: ColumnProps) => {
         }
     })
 
+    useEffect(()=>{setCount(tasks.length)},[tasks])
     return (
-        <div ref={setNodeRef} className="columnContainer">
+        <div className="columnContainer">
             <div className="columnTitle">
                 <div className="columnTitleText">{column.title}</div>
-                <div className="columnTitleCount">0</div>
+                <div className="columnTitleCount">{tasksCount}</div>
             </div>
-            <div className="columnContent">
+            <div ref={setNodeRef} className="columnContent">
                 <SortableContext items={taskIds}>
                     {
                         tasks.map(task => <Task key={task.id} task={task} />)

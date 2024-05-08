@@ -11,7 +11,8 @@ const ProjectsToolBarProvider = ({ children }: PropsWithChildren) => {
 
     const [loading, setLoading] = useState(true)
     const [projectTypes, setProjectTypes] = useState<projectType[]>([])
-    const [currentType, setCurrentType] = useState<projectType>({typeId: 0, typeName: 'none'})
+    const [currentType, setCurrentType] = useState<projectType>({typeID: 0, typeName: 'none'})
+    const [newProject, setNewProject]=useState<number | null>(null)//Оповещение о добовлении проекта-костыль переделать
 
     useEffect(() => {
         const token=localStorage.getItem('token')
@@ -41,7 +42,12 @@ const ProjectsToolBarProvider = ({ children }: PropsWithChildren) => {
     }, [])
 
     return (
-        <ToolBarContext.Provider value={{projectTypes: projectTypes, currentProjectType: currentType, setCurrentProjectType: setCurrentType}}>
+        <ToolBarContext.Provider value={{projectTypes: projectTypes, 
+        currentProjectType: currentType, 
+        setCurrentProjectType: setCurrentType,
+        newProject: newProject,
+        setNewProject: setNewProject
+       }}>
             {loading? <Loader/> : children}
         </ToolBarContext.Provider>
     )

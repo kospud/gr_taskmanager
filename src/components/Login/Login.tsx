@@ -23,7 +23,7 @@ const Login = () => {
         })
             .then(response => {
                 const user = response?.data?.values;
-                setUser({ authorized: true, userName: user.userName, userEmail: user.userEmail, token: user.token })
+                setUser({ authorized: true, userName: user.userName, userEmail: user.userEmail, token: user.token, userID: user.userID })
                 localStorage.setItem('token', user.token);
             })
             .catch(error => {
