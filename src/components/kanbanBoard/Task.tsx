@@ -1,8 +1,7 @@
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from '@dnd-kit/utilities'
 import { TaskType, dataBaseProject, dataBaseTask } from "../../types";
-import { AuthContext } from "../../providers/AuthProvider";
-import { memo, useContext, useState } from "react";
+import { memo, useState } from "react";
 import ProjectCard from "../Workspace/Projects/ProjectCard";
 import TaskCard from "../Workspace/Tasks/TaskCard";
 

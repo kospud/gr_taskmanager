@@ -19,17 +19,6 @@ const TaskToolBarProvider = ({ children }: PropsWithChildren) => {
     const [myTasksChecked, setMyTasksChecked] = useState(true)
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
-       
-        if (myTasksChecked) {
-            const index = users.findIndex(elem => elem.userID === currentUser.userID)
-            setUser(users[index])
-        } else{
-            setUser(users[0])
-        }
-        
-    }, [myTasksChecked])
-
     //Проекты
     useEffect(() => {
         axios.get(PROJECTS, {
@@ -54,6 +43,18 @@ const TaskToolBarProvider = ({ children }: PropsWithChildren) => {
             })
     }, [])
 
+    useEffect(() => {
+   
+        if (myTasksChecked) {
+            const index = users.findIndex(elem => elem.userID === currentUser.userID)
+            setUser(users[index])
+            
+            setProject({ projectID: 0, projectName: 'не выбрано' })
+        } else{
+            setUser(users[0])
+        }
+       
+    }, [myTasksChecked])
     return (
         <TasksToolBarContext.Provider value={{ users, user, setUser, projects, project, setProject, myTasksChecked, setMyTasksChecked }}>
             {loading ? <Loader /> : children}

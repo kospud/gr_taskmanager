@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import './Login.css'
-import { Button, Input, PasswordInput, Toast } from '@skbkontur/react-ui';
+import { Button, Center, Input, PasswordInput, Toast } from '@skbkontur/react-ui';
 import axios from 'axios';
 import { AUTH_SIGNIN } from '../../utils/consts';
 import { AuthContext } from '../../providers/AuthProvider';
@@ -42,16 +42,20 @@ const Login = () => {
     }
 
     return (
-        <div className="login">
-            {loading ? <Loader /> : <div className='login_data'>
-                <p>Авторизация</p>
-                Эл. почта
-                <Input type="email" value={email} onChange={event => setEmail(event.target.value)} />
-                Пароль
-                <PasswordInput detectCapsLock value={password} onChange={event => setPassword(event.target.value)} />
-                <Button className="loginButton" use='success' title="Войти" onClick={login}>Войти</Button>
-            </div>}
-        </div>
+        <Center>
+            <div className="login">
+
+                {loading ? <Loader /> : <div className='login_data'>
+                    <p>Авторизация</p>
+                    Эл. почта:
+                    <Input type="email" value={email} onChange={event => setEmail(event.target.value)} />
+                    Пароль:
+                    <PasswordInput detectCapsLock value={password} onChange={event => setPassword(event.target.value)} />
+                    <Button className="loginButton" use='success' title="Войти" onClick={login}>Войти</Button>
+                </div>}
+
+            </div>
+        </Center>
     )
 }
 

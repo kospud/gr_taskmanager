@@ -2,7 +2,7 @@ import { LOGIN_ROUTE, WORKSPACE_TASKS_ROUTE, WORKSPACE_PROJECTS_ROUTE, WORKSPACE
 import Projects from "../components/Workspace/Projects/Projects";
 import Login from "../components/Login/Login";
 import Tasks from "../components/Workspace/Tasks/Tasks";
-import Analytics from "../components/Workspace/Analytics";
+import Analytics from "../components/Workspace/Analitics/Analytics";
 import Settings from "../components/Workspace/Settings";
 
 
