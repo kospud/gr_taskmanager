@@ -1,0 +1,17 @@
+.generalReport {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.generalDiagram {
+    display: flex;
+    padding: 5%;
+    width: 50%;
+}
+
+
+.generalReportTable {
+    width: 100%;
+    flex-grow: 0;
+}

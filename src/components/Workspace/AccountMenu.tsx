@@ -1,4 +1,4 @@
-import {Fragment, useContext, useState} from 'react';
+import { Fragment, useContext, useState } from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -12,8 +12,9 @@ import PersonAdd from '@mui/icons-material/PersonAdd';
 import Logout from '@mui/icons-material/Logout';
 
 import { AuthContext } from '../../providers/AuthProvider';
+import { Badge } from '@mui/material';
 
-const AccountMenu=()=>{
+const AccountMenu = () => {
 
     const [user, setUser] = useContext(AuthContext)!
     const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -24,7 +25,7 @@ const AccountMenu=()=>{
     const handleClose = () => {
         setAnchorEl(null);
     };
-    const logout=()=>{
+    const logout = () => {
         localStorage.removeItem('token');
         setUser({
             authorized: false,
@@ -38,16 +39,18 @@ const AccountMenu=()=>{
         <Fragment>
             <Box sx={{ display: 'flex', alignItems: 'center', textAlign: 'center' }}>
                 <Tooltip title="Account settings">
-                    <IconButton
-                        onClick={handleClick}
-                        size="small"
-                        sx={{ ml: 2 }}
-                        aria-controls={open ? 'account-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
-                    >
-                        <Avatar sx={{ width: 32, height: 32 }}>{user?.userName[0]}</Avatar>
-                    </IconButton>
+                    <Badge badgeContent={0} color="primary">
+                        <IconButton
+                            onClick={handleClick}
+                            size="small"
+                            sx={{ ml: 2 }}
+                            aria-controls={open ? 'account-menu' : undefined}
+                            aria-haspopup="true"
+                            aria-expanded={open ? 'true' : undefined}
+                        >
+                            <Avatar sx={{ width: 32, height: 32 }}>{user?.userName[0]}</Avatar>
+                        </IconButton>
+                    </Badge>
                 </Tooltip>
                 <Typography sx={{ minWidth: 100 }}>{user?.userName}</Typography>
             </Box>

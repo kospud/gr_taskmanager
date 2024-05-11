@@ -98,7 +98,8 @@ export type dataBaseTask={
     startDatePlan: string | null,
     endDatePlan: string | null,
     stageNumber: number,
-    stageDescription: string
+    stageDescription: string,
+    endDateFact?: string | null
 }
 
 export type dataBaseProject = {

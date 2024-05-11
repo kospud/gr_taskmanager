@@ -57,7 +57,6 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
     
                     Toast.push(message, null, 1000)
                 })
-               
         }
     }, [])
 
