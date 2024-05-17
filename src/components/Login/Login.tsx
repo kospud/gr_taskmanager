@@ -40,7 +40,6 @@ const Login = () => {
                 setLoading(false)
             })
     }
-
     return (
         <Center>
             <div className="login">

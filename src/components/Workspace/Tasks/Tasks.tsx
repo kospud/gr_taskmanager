@@ -15,15 +15,15 @@ import TasksToolBarProvider from '../../../providers/TasksToolBarProvider';
 
 const Tasks = () => {
 
-    return(
+    return (
         <TasksToolBarProvider>
             <div className="tasks">
                 <TasksToolBar></TasksToolBar>
                 <TasksContent></TasksContent>
             </div>
         </TasksToolBarProvider>
-            
-        )
+
+    )
 }
 
 export default Tasks;

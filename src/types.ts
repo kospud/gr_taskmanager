@@ -2,7 +2,7 @@ import { UniqueIdentifier } from "@dnd-kit/core";
 import { Dispatch, ReactNode } from "react";
 
 //Свойства пользователя
-interface User {
+export interface User {
     authorized: boolean,
     userName: string,
     userEmail: string,

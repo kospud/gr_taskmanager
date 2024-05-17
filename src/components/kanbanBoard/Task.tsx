@@ -10,10 +10,10 @@ const filterUser = ['пользователь (none)', 'Константин П�
 interface TaskProps {
     task: TaskType
     className?: string
-    onValueChange?: ()=>{}
+    onValueChange?: () => {}
 }
 
-const Task = memo(({ task, className}: TaskProps) => {
+const Task = memo(({ task, className }: TaskProps) => {
 
     const [user, setUser] = useState(filterUser[0])
     const {
@@ -43,8 +43,8 @@ const Task = memo(({ task, className}: TaskProps) => {
             style={style}
             className="task draggable" />
     }
-//Костыль позже исправлю
-    switch (task.objectType){
+    //Костыль позже исправлю
+    switch (task.objectType) {
         case 'project':
             return (
                 <div ref={setNodeRef}
@@ -52,7 +52,7 @@ const Task = memo(({ task, className}: TaskProps) => {
                     {...attributes}
                     {...listeners}
                     className={`task ${className}`}>
-                    <ProjectCard project={task.object as dataBaseProject}/>
+                    <ProjectCard project={task.object as dataBaseProject} />
                 </div>
             )
         case 'task':
@@ -62,7 +62,7 @@ const Task = memo(({ task, className}: TaskProps) => {
                     {...attributes}
                     {...listeners}
                     className={`task ${className}`}>
-                    <TaskCard task={task.object as dataBaseTask}/>
+                    <TaskCard task={task.object as dataBaseTask} />
                 </div>
             )
         default:
@@ -76,8 +76,8 @@ const Task = memo(({ task, className}: TaskProps) => {
                 </div>
             )
     }
-        
-    
+
+
 
 
 })

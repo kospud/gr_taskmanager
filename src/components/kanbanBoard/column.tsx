@@ -9,14 +9,14 @@ interface ColumnProps {
     tasks: TaskType[]
 }
 
-const ColumnContainer = ({column, tasks}: ColumnProps) => {
+const ColumnContainer = ({ column, tasks }: ColumnProps) => {
 
     const taskIds = useMemo(() => {
         return tasks.map(task => task.id)
     }, [tasks])
 
-    const [tasksCount, setCount]=useState(tasks.length)
-    
+    const [tasksCount, setCount] = useState(tasks.length)
+
     const { setNodeRef } = useDroppable({
         id: column.id,
         data: {
@@ -25,7 +25,7 @@ const ColumnContainer = ({column, tasks}: ColumnProps) => {
         }
     })
 
-    useEffect(()=>{setCount(tasks.length)},[tasks])
+    useEffect(() => { setCount(tasks.length) }, [tasks])
     return (
         <div className="columnContainer">
             <div className="columnTitle">

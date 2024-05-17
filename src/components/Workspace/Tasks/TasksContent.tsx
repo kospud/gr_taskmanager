@@ -13,11 +13,6 @@ interface statusesFromServer {
     statusName: string
 }
 
-interface projectFilter {
-    projectID: number,
-    projectName: string
-}
-
 const TasksContent = () => {
 
     const [columns, setColumns] = useState<Column[]>([])
@@ -85,20 +80,20 @@ const TasksContent = () => {
 
     return (
         <div className="tasksContent">
-            {loading ? <Loader /> : <KanbanBoard columns={columns} tasks={tasks.filter(elem=>taskFilter(elem))} setTasks={setTasks}></KanbanBoard>}
+            {loading ? <Loader /> : <KanbanBoard columns={columns} tasks={tasks.filter(elem => taskFilter(elem))} setTasks={setTasks}></KanbanBoard>}
         </div>
     )
 
-    function taskFilter(task: TaskType){
-       
-        const {userID,projectID}=task.object as dataBaseTask;
+    function taskFilter(task: TaskType) {
 
-        if(user.userID!==0 && project.projectID!==0)
-            return userID===user.userID && projectID===project.projectID;
-        else if(user.userID!==0)
-            return userID===user.userID
-        else if(project.projectID!==0)
-            return projectID===project.projectID
+        const { userID, projectID } = task.object as dataBaseTask;
+
+        if (user.userID !== 0 && project.projectID !== 0)
+            return userID === user.userID && projectID === project.projectID;
+        else if (user.userID !== 0)
+            return userID === user.userID
+        else if (project.projectID !== 0)
+            return projectID === project.projectID
         else
             return true;
     }

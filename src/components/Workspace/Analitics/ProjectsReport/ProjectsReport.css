@@ -6,7 +6,7 @@
     padding-top: 1%;
 }
 
-.projectsReportContent{
+.projectsReportContent {
     background-color: white;
     flex-grow: 1;
     border-radius: 10px;
@@ -14,19 +14,19 @@
     padding: 1%;
 }
 
-.projectsList{
+.projectsList {
     width: 20%;
 }
 
-.progressBar{
-    color:rgb(105, 208, 255);
+.progressBar {
+    color: rgb(105, 208, 255);
     margin-bottom: 5%;
 }
 
-.redRow{
+.redRow {
     background-color: rgb(255, 200, 200);
 }
 
-.greenRow{
+.greenRow {
     background-color: rgb(176, 255, 176);
 }

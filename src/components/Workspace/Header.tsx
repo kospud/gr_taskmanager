@@ -4,7 +4,7 @@ const Header = () => {
 
     return (
         <div className="header">
-            <AccountMenu/>
+            <AccountMenu />
         </div>
     )
 

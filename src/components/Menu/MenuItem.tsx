@@ -9,7 +9,7 @@ const MenuItem = memo((props: MenuItemProps) => {
         textDecoration: "none",
         color: 'black'
     };
-    
+
     return (
         <li className="menuLiItem">
             <Link to={props.path} style={linkStyle}>

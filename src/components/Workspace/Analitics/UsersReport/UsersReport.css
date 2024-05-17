@@ -6,7 +6,7 @@
     padding-top: 1%;
 }
 
-.usersReportContent{
+.usersReportContent {
     background-color: white;
     flex-grow: 1;
     border-radius: 10px;
@@ -15,20 +15,21 @@
     flex-grow: 0;
 }
 
-.usersList{
+.usersList {
     width: 20%;
 }
 
-.usersReportDiagrams{
+.usersReportDiagrams {
     display: flex;
     margin-bottom: 5%;
 }
-.usersTaskdiagram{
+
+.usersTaskdiagram {
     width: 60%;
     flex-grow: 0;
 }
 
-.tasksTimes{
+.tasksTimes {
 
     font-size: larger;
 }

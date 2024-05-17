@@ -1,14 +1,14 @@
-.tasks{
+.tasks {
     height: 90%;
     width: 80%;
-    padding-left:1% ;
-    padding-top:1% ;
+    padding-left: 1%;
+    padding-top: 1%;
     padding-right: 1%;
     display: flex;
     flex-direction: column;
 }
 
-.tasksContent{
+.tasksContent {
     width: 100%;
     overflow-x: auto;
     overflow-y: auto;
@@ -16,63 +16,63 @@
     flex-grow: 1;
 }
 
-.tasksToolBar{
+.tasksToolBar {
     display: flex;
     gap: 1%;
     align-items: center;
 }
 
-.taskCard{
+.taskCard {
     width: 100%;
     height: 100%;
     border-radius: inherit;
     display: flex;
 }
 
-.taskStatusline{
+.taskStatusline {
     border-top-left-radius: inherit;
     border-bottom-left-radius: inherit;
     height: 100%;
     width: 5%;
 }
 
-.taskContent{
+.taskContent {
     flex-grow: 1;
     padding: 2%;
     display: flex;
     flex-direction: column;
-    
+
 }
 
-.taskName{
+.taskName {
     font-size: large;
     margin-bottom: 5%;
 }
 
-.icon{
+.icon {
     opacity: 0.7;
 }
 
-.taskLine{
+.taskLine {
     display: flex;
     align-items: center;
     margin-bottom: 1%;
 }
 
-.taskDates{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1%;
-}
-
-.taskUser{
+.taskDates {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 1%;
 }
 
-.user{
+.taskUser {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1%;
+}
+
+.user {
     flex-grow: 1;
 }

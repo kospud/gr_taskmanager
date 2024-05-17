@@ -7,89 +7,89 @@ import { dataBaseProject } from "../../../types";
 import { useState } from "react";
 
 interface ProjectCardProps {
-    project: dataBaseProject
+  project: dataBaseProject
 }
 
 const ProjectCard = ({ project }: ProjectCardProps) => {
 
-    const [modalOpened, setOpened]=useState(false);
-    const [panel, setPanel] = useState(false);
+  const [modalOpened, setOpened] = useState(false);
+  const [panel, setPanel] = useState(false);
+
+  return (
+    <div className="projectCard">
+      <div className={`projectCardHeader ${deadLineHeader(project.stageEndDate)}`}>
+        <p>{project.projectName}</p>
+        <IconButton size='small' onClick={open}>
+          <EditIcon fontSize="small" color="inherit" />
+        </IconButton>
+      </div>
+      <div className="projectCardLine">
+        <PersonIcon /><a>{`${project.userName} ${project.userSurname}`}</a>
+      </div>
+      <div className="projectCardLine">
+        <EventAvailableIcon /><a>{`${dataFormat(project.startDate)} - ${dataFormat(project.endDate)}`}</a>
+      </div>
+      {
+        modalOpened && renderModal()
+      }
+    </div>
+
+  )
+
+  function renderModal() {
+
 
     return (
-        <div className="projectCard">
-            <div className={`projectCardHeader ${deadLineHeader(project.stageEndDate)}`}>
-                <p>{project.projectName}</p>
-                <IconButton size='small' onClick={open}>
-                    <EditIcon fontSize="small" color="inherit" />
-                </IconButton>
-            </div>
-            <div className="projectCardLine">
-                <PersonIcon /><a>{`${project.userName} ${project.userSurname}`}</a>
-            </div>
-            <div className="projectCardLine">
-                <EventAvailableIcon /><a>{`${dataFormat(project.startDate)} - ${dataFormat(project.endDate)}`}</a>
-            </div>
-            {
-                modalOpened && renderModal()
-            }
-        </div>
+      <Modal onClose={close}>
+        <Modal.Header>{project.projectName}</Modal.Header>
+        <Modal.Body>
+          <p>Use rxjs operators with react hooks</p>
 
-    )
-    
-    function renderModal() {
+          <div>
+            Информация о проекте
+          </div>
+        </Modal.Body>
+        <Modal.Footer panel={panel}>
+          <Button onClick={close}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
 
-        
-        return (
-          <Modal onClose={close}>
-            <Modal.Header>{project.projectName}</Modal.Header>
-            <Modal.Body>
-              <p>Use rxjs operators with react hooks</p>
-      
-              <div>
-                Информация о проекте
-              </div>
-            </Modal.Body>
-            <Modal.Footer panel={panel}>
-              <Button onClick={close}>Close</Button>
-            </Modal.Footer>
-          </Modal>
-        );
-      }
-      
-      function open() {
-        setOpened(true);
-      }
-      
-      function close() {
-        setOpened(false);
-      }
-      
+  function open() {
+    setOpened(true);
+  }
 
-    function dataFormat(dateS: string) {
-        const date = new Date(dateS)
+  function close() {
+    setOpened(false);
+  }
 
-    
-        const formattedDate = date.toLocaleDateString('ru-RU');
-        return formattedDate;
+
+  function dataFormat(dateS: string) {
+    const date = new Date(dateS)
+
+
+    const formattedDate = date.toLocaleDateString('ru-RU');
+    return formattedDate;
+  }
+  function deadLineHeader(inputDate: string) {
+
+
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    var inputDateObj = new Date(inputDate);
+    inputDateObj.setHours(0, 0, 0, 0);
+
+    // Сравниваем даты
+    if (inputDateObj.getTime() === today.getTime()) {
+      return 'yellow';
+    } else if (inputDateObj < today) {
+      return 'red';
+    } else {
+      return '';
     }
-    function deadLineHeader(inputDate: string) {
-
-
-        var today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        var inputDateObj = new Date(inputDate);
-        inputDateObj.setHours(0, 0, 0, 0);
-
-        // Сравниваем даты
-        if (inputDateObj.getTime() === today.getTime()) {
-            return 'yellow';
-        } else if (inputDateObj < today) {
-            return 'red';
-        } else {
-            return '';
-        }
-    }
+  }
 }
 
 export default ProjectCard;

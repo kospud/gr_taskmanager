@@ -1,15 +1,15 @@
-.projects{
-    flex-grow:1;
+.projects {
+    flex-grow: 1;
     height: 90%;
     width: 80%;
-    padding-left:1% ;
-    padding-top:1% ;
+    padding-left: 1%;
+    padding-top: 1%;
     padding-right: 1%;
     display: flex;
     flex-direction: column;
 }
 
-.projectsContent{
+.projectsContent {
     width: 100%;
     overflow-x: auto;
     overflow-y: auto;
@@ -18,11 +18,11 @@
 
 }
 
-.projectCard{
+.projectCard {
     min-width: 200px;
 }
 
-.projectCardHeader{
+.projectCardHeader {
     text-align: center;
     border-bottom: 1px solid rgb(165, 165, 165);
     display: flex;
@@ -34,22 +34,22 @@
 }
 
 
-.yellow{
+.yellow {
     background-color: rgba(255, 153, 0, 0.699);
     color: black;
 }
 
-.red{
+.red {
     background-color: rgba(184, 0, 0, 0.726);
     color: rgb(255, 255, 255);
 }
 
-.blue{
+.blue {
     background-color: rgb(88, 174, 255);
     color: white;
 }
 
-.projectCardLine{
+.projectCardLine {
     display: flex;
     align-items: center;
     margin: 2%;
@@ -57,11 +57,11 @@
 
 }
 
-.sidePage{
+.sidePage {
     width: 50%;
 }
 
-.sidePageBody{
+.sidePageBody {
     height: 40%;
     padding: 5%;
     display: flex;
@@ -69,13 +69,13 @@
     justify-content: space-between;
 }
 
-.sidePageDates{
+.sidePageDates {
     display: flex;
     justify-content: space-between;
     padding-right: 20%;
 }
 
-.projectStage{
+.projectStage {
     display: flex;
     flex-direction: column;
     background-color: aliceblue;
@@ -86,6 +86,6 @@
     justify-content: space-between;
 }
 
-.done{
+.done {
     text-decoration: line-through;
 }

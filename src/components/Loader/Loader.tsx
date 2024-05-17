@@ -1,9 +1,9 @@
 import './loader.css'
-function Loader(){
+function Loader() {
 
-    return(
+    return (
         <div className="loader">
-        <div className="lds-facebook"><div></div><div></div><div></div></div>    
+            <div className="lds-facebook"><div></div><div></div><div></div></div>
         </div>
     )
 }

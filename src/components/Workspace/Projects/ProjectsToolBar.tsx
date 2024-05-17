@@ -78,8 +78,8 @@ function NewProjectSidePage({ setOpenFunc, currentType }: NewProjectSidePageProp
     const [loading, setLoading] = useState(true);
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
-    const {setNewProject} =useContext(ToolBarContext)!
-    
+    const { setNewProject } = useContext(ToolBarContext)!
+
 
 
     //Загрузить шаблоны задач
@@ -116,7 +116,7 @@ function NewProjectSidePage({ setOpenFunc, currentType }: NewProjectSidePageProp
                 }
                 Toast.push(message, null, 1000)
             })
-            .finally(()=>{
+            .finally(() => {
                 setLoading(false)
             })
 
@@ -184,14 +184,14 @@ function NewProjectSidePage({ setOpenFunc, currentType }: NewProjectSidePageProp
                 }
             })
         }
-        
+
         axios.post(PROJECTS, project, {
             headers: {
                 Authorization: localStorage.getItem('token')
             }
         })
             .then(response => {
-              
+
                 Toast.push('Проект добавлен!', null, 1000)
                 setNewProject(response.data.values.project.insertedId);
                 close();
@@ -260,7 +260,7 @@ function ProjectStage({ stage, onValueChange, users }: ProjectStageProps) {
                 <a>Пользователь</a>
                 <Select items={users.map(element => element.userName)} value={users[userIndex]?.userName} onValueChange={setUser}></Select>
                 <a>Статус</a>
-                <Select items={statusArray.map(elem=>elem.statusName)} value={statusArray[statusIndex].statusName} onValueChange={setStatus}></Select>
+                <Select items={statusArray.map(elem => elem.statusName)} value={statusArray[statusIndex].statusName} onValueChange={setStatus}></Select>
             </div>
         </div>
     )
@@ -274,7 +274,7 @@ function ProjectStage({ stage, onValueChange, users }: ProjectStageProps) {
         else
             setDone(false)
         onValueChange(stage.stageNumber, stage)
-        
+
 
     }
     function setUser(user: string) {

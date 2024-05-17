@@ -13,7 +13,7 @@ const columns: GridColDef[] = [
     { field: 'deadlineStatus', headerName: 'Соблюдение сроков', width: 200 }
 ];
 
-interface Row{
+interface Row {
     id: string,
     userName: string,
     statusName: string,
@@ -40,10 +40,10 @@ export default function ProjectDataTable({ tasks }: ProjectTableProps) {
         const endDatePlan = task.endDatePlan ? dataFormat(task.endDatePlan) : '';
         const endDateFact = task.endDateFact ? dataFormat(task.endDateFact) : '';
         const id = task.taskName;
-        const statusName=task.statusName;
-        const deadlineStatus=task.deadlineStatus
+        const statusName = task.statusName;
+        const deadlineStatus = task.deadlineStatus
 
-        return {id, userName, endDateFact,statusName, endDatePlan, deadlineStatus}
+        return { id, userName, endDateFact, statusName, endDatePlan, deadlineStatus }
     })
 
     return (
@@ -51,18 +51,18 @@ export default function ProjectDataTable({ tasks }: ProjectTableProps) {
             <DataGrid
                 rows={rows}
                 columns={columns}
-                getRowClassName={(params)=>getColorToRow(params)}
+                getRowClassName={(params) => getColorToRow(params)}
             />
         </div>
     );
 
-    function getColorToRow(params: GridRowParams<Row>){
-        
+    function getColorToRow(params: GridRowParams<Row>) {
+
         const deadlineStatuses = ['Сроки соблюдены', 'Сроки не соблюдены', 'Не установлено']
-        const deadlineStatusesColors=['greenRow', 'redRow','']
+        const deadlineStatusesColors = ['greenRow', 'redRow', '']
 
 
-        const index=deadlineStatuses.findIndex(elem=>elem===params.row.deadlineStatus)
+        const index = deadlineStatuses.findIndex(elem => elem === params.row.deadlineStatus)
         return deadlineStatusesColors[index]
 
     }

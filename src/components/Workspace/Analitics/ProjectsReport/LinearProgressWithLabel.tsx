@@ -18,26 +18,26 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number })
   );
 }
 
-interface progressProps{
+interface progressProps {
   doneTasks: number
   sumTasks: number
 }
 
-export default function LinearWithValueLabel({doneTasks, sumTasks}: progressProps) {
-  
+export default function LinearWithValueLabel({ doneTasks, sumTasks }: progressProps) {
 
-  const progressValue=Math.round(doneTasks/sumTasks*100);
+
+  const progressValue = Math.round(doneTasks / sumTasks * 100);
   const [progress, setProgress] = React.useState(0);
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
 
-      setProgress(progressValue)
-    
-  },[])
+    setProgress(progressValue)
+
+  }, [])
 
   return (
     <Box sx={{ width: '50%' }}>
-      <LinearProgressWithLabel color='inherit' value={progress} sx={{height: '50px', fontSize: '24', borderRadius: '10px'} }/>
+      <LinearProgressWithLabel color='inherit' value={progress} sx={{ height: '50px', fontSize: '24', borderRadius: '10px' }} />
     </Box>
   );
 }

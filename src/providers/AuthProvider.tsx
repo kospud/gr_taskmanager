@@ -25,7 +25,7 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
         token: ''
     })
     const [loading, setLoading] = useState(true)
-    const [usersList, setUsersList]=useState<UserListItemState[]>([])
+    const [usersList, setUsersList] = useState<UserListItemState[]>([])
 
     useEffect(() => {
         const token = localStorage.getItem('token');
@@ -38,10 +38,10 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
             })
                 .then(response => {
                     const userData = response.data?.values[0]
-                    const userState={
-                        authorized: true, 
-                        userName: `${userData.userName} ${userData.userSurname}`, 
-                        userEmail: userData.userEmail, 
+                    const userState = {
+                        authorized: true,
+                        userName: `${userData.userName} ${userData.userSurname}`,
+                        userEmail: userData.userEmail,
                         token: token,
                         userID: userData.userID
                     }
@@ -54,13 +54,13 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
                     } else {
                         message = error.message
                     }
-    
+
                     Toast.push(message, null, 1000)
                 })
         }
     }, [])
 
-    useEffect(()=>{
+    useEffect(() => {
         axios.get(USERS, {
             headers: {
                 Authorization: localStorage.getItem('token')
@@ -80,14 +80,15 @@ const AuthProvider = ({ children }: PropsWithChildren) => {
                 }
                 Toast.push(message, null, 1000)
             })
-            .finally(() => {
-                setLoading(false)
-            })
-    },[])
+    }, [])
 
+    useEffect(() => {
+        if (usersList.length !== 0)
+            setLoading(false)
+    }, [usersList])
     return (
         <AuthContext.Provider value={[user, setUser, usersList]}>
-            {loading? <Loader/> : children }
+            {loading ? <Loader /> : children}
         </AuthContext.Provider>
     )
 }

@@ -123,12 +123,12 @@ function UsersReport() {
               }} />
           </div>
           <div className="tasksTimes">
-              <ul>Среднее время выполнения задач:
-                {
-                  tasksTimes!.data.map(elem => <li>{`${elem.taskName}-${elem.timeDays} дн.`}</li>)
-                }
-              </ul>
-            </div>
+            <ul>Среднее время выполнения задач:
+              {
+                tasksTimes!.data.map(elem => <li>{`${elem.taskName}-${elem.timeDays} дн.`}</li>)
+              }
+            </ul>
+          </div>
         </div>
         <div className="UserReportTable">
           <Tabs value={active} onValueChange={setActiveMy}>

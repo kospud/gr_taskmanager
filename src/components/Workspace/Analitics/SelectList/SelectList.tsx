@@ -3,58 +3,58 @@ import { StringDecoder } from "string_decoder";
 import { UserListItemState, projectListItemState } from "../../../../types";
 import './SelectList.css'
 
-type Item= UserListItemState | projectListItemState
+type Item = UserListItemState | projectListItemState
 
-interface SelectListProps{
+interface SelectListProps {
     items: Item[]
     currentId: number,
     title: string
-    setCurrentId: (id: number)=>void
+    setCurrentId: (id: number) => void
 }
 
-const SelectList :React.FC<SelectListProps>=({items, currentId, title, setCurrentId})=>{
+const SelectList: React.FC<SelectListProps> = ({ items, currentId, title, setCurrentId }) => {
 
-    return(
+    return (
         <div className="selectList">
             <div className="selectListTitle">{title}</div>
-            {items.map(item=><SelectListItem item={item} 
-            currentId={currentId}
-            setCurrentId={setCurrentId}
+            {items.map(item => <SelectListItem item={item}
+                currentId={currentId}
+                setCurrentId={setCurrentId}
             />)}
         </div>
     )
 
 }
 
-interface SelectListItemProps{
+interface SelectListItemProps {
     item: Item
     currentId: number,
-    setCurrentId: (id: number)=>void
+    setCurrentId: (id: number) => void
 }
 
-const SelectListItem=({item, currentId, setCurrentId} : SelectListItemProps)=>{
+const SelectListItem = ({ item, currentId, setCurrentId }: SelectListItemProps) => {
 
-    return(
-        <div className={`selectListItem ${currentId===getItemId(item) && 'selected'}`} onClick={()=>setCurrentId(getItemId(item))}>
+    return (
+        <div className={`selectListItem ${currentId === getItemId(item) && 'selected'}`} onClick={() => setCurrentId(getItemId(item))}>
             <span>{getItemName(item)}</span>
         </div>
     )
 
-    function getItemName(item:Item){
-       if('userName' in item){
+    function getItemName(item: Item) {
+        if ('userName' in item) {
             return item.userName
-       } else{
-        return item.projectName
-       }
+        } else {
+            return item.projectName
+        }
     }
 
-    function getItemId(item:Item){
-        if('userName' in item){
-             return item.userID
-        } else{
-         return item.projectID
+    function getItemId(item: Item) {
+        if ('userName' in item) {
+            return item.userID
+        } else {
+            return item.projectID
         }
-     }
+    }
 }
 
 

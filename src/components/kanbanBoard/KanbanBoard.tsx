@@ -8,16 +8,14 @@ import Task from './Task'
 import { arrayMove } from '@dnd-kit/sortable'
 
 
-interface KanbanBoardProps{
+interface KanbanBoardProps {
     columns: Column[],
     tasks: TaskType[]
     setTasks: React.Dispatch<React.SetStateAction<TaskType[]>>
 }
 
-const KanbanBoard = memo(({columns, tasks, setTasks}:KanbanBoardProps) => {
+const KanbanBoard = memo(({ columns, tasks, setTasks }: KanbanBoardProps) => {
 
-    //const [tasks, setTasks] = useState<TaskType[]>(boardTasks)
-    //const [columns, setColumns] = useState<Column[]>(boardColumns)
     const [activeTask, setActiveTask] = useState<TaskType | null>(null);
 
     const sensors = useSensors(
@@ -130,5 +128,5 @@ const KanbanBoard = memo(({columns, tasks, setTasks}:KanbanBoardProps) => {
     }
 
 })
-    
+
 export default KanbanBoard;

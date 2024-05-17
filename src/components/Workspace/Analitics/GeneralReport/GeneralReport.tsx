@@ -10,14 +10,8 @@ import Loader from '../../../Loader/Loader';
 import GeneralDataTable from './GeneralDataTable';
 Chart.register(ArcElement, Title, Legend, Tooltip);
 
-type tasksState = Record<string,dataBaseTask[]> | undefined
-/*{
-    newTasks: dataBaseTask[],
-    tasksInWork: dataBaseTask[],
-    successTasks: dataBaseTask[],
-    overdueTasks: dataBaseTask[]
-} | undefined
-*/
+type tasksState = Record<string, dataBaseTask[]> | undefined
+
 const GeneralReport = () => {
 
     const [loading, setLoading] = useState(true);
@@ -33,7 +27,7 @@ const GeneralReport = () => {
             }
         })
             .then(response => {
-             
+
                 setTasks(
                     {
                         newTasks: response.data.values.newTasks,
@@ -88,7 +82,7 @@ const GeneralReport = () => {
                             maintainAspectRatio: false,
                             plugins: {
                                 legend: {
-                                    position: 'right', 
+                                    position: 'right',
                                     display: true,
                                     labels: {
                                         font: {
@@ -98,7 +92,7 @@ const GeneralReport = () => {
                                     }
                                 },
                                 tooltip: {
-                                    enabled: true, 
+                                    enabled: true,
                                 }
                             }
                         }} />
@@ -116,11 +110,11 @@ const GeneralReport = () => {
 
         )
 
-        function setActiveMy(value: string){
+    function setActiveMy(value: string) {
 
-            setActive(value)
-            setActiveData(tasks![value])
-        }
+        setActive(value)
+        setActiveData(tasks![value])
+    }
 }
 
 export default GeneralReport

@@ -5,11 +5,11 @@ import { AuthContext } from '../../../../providers/AuthProvider';
 import { taskState } from './UsersReport';
 
 const columns: GridColDef[] = [
-  {field: 'id', headerName: 'id', width: 0 },
+  { field: 'id', headerName: 'id', width: 0 },
   { field: 'taskName', headerName: 'Задача', width: 150 },
   { field: 'projectName', headerName: 'Проект', width: 150 },
   { field: 'endDatePlan', headerName: 'План. дата окончания', width: 200 },
-  { field: 'endDateFact', headerName: 'Факт. дата окончания', width: 200}
+  { field: 'endDateFact', headerName: 'Факт. дата окончания', width: 200 }
 ];
 
 
@@ -25,10 +25,10 @@ export default function UserDataTable({ tasks }: UserTableProps) {
 
     const endDatePlan = task.endDatePlan ? dataFormat(task.endDatePlan) : '';
     const endDateFact = task.endDateFact ? dataFormat(task.endDateFact) : '';
-    const projectName=task.projectName;
-    const taskName=task.taskName;
-    const id=taskName+projectName;
-    return {id, taskName, projectName, endDatePlan, endDateFact};
+    const projectName = task.projectName;
+    const taskName = task.taskName;
+    const id = taskName + projectName;
+    return { id, taskName, projectName, endDatePlan, endDateFact };
 
   })
 

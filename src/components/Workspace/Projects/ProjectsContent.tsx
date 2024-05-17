@@ -27,7 +27,7 @@ const ProjectsContent = () => {
     //Загрузка данных для доски
     useEffect(() => {
 
- 
+
         //Получаем заголовки для досок
         axios.get(`${TEMPLATES}/${currentProjectType.typeID}`, {
             headers: {
@@ -61,18 +61,19 @@ const ProjectsContent = () => {
             }
         })
             .then(response => {
-                
-                
+
+
                 setProjects(response.data.values.map((value: dataBaseProject) => {
-                    return { id: generateNumericID(), 
-                        columnId: value.stageName, 
-                        object: value, 
+                    return {
+                        id: generateNumericID(),
+                        columnId: value.stageName,
+                        object: value,
                         dataBaseId: value.stageID,
                         objectType: 'project'
-                        }
+                    }
                 }))
 
-                
+
             })
             .catch(error => {
                 let message: string;
@@ -88,7 +89,7 @@ const ProjectsContent = () => {
                 setLoading(false)
             })
 
-    },[newProject, currentProjectType])
+    }, [newProject, currentProjectType])
 
 
     return (

@@ -112,7 +112,7 @@ function ProjectsReport() {
             <LinearProgressWithLabel doneTasks={tasks!.filter(elem => elem.statusID === 3).length} sumTasks={tasks!.length} />
 
           </div>
-          <ProjectDataTable tasks={tasks!}/>
+          <ProjectDataTable tasks={tasks!} />
         </div>)}
         <div className="projectsList">
           <SelectList title='Проекты:' items={projects} currentId={currentId} setCurrentId={setCurrentId} />

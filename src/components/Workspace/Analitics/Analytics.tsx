@@ -6,15 +6,15 @@ import UsersReport from "./UsersReport/UsersReport";
 import GeneralReport from "./GeneralReport/GeneralReport";
 
 
-const componentsByName : Record<string, any>={
-    "General": <GeneralReport/>,
-    "Projects": <ProjectsReport/>,
-    "Users": <UsersReport/>
+const componentsByName: Record<string, any> = {
+    "General": <GeneralReport />,
+    "Projects": <ProjectsReport />,
+    "Users": <UsersReport />
 }
 const Analytics = () => {
 
     const [active, setActive] = useState('General');
-    const component=componentsByName[active]
+    const component = componentsByName[active]
 
     return (
         <div className="analytics">

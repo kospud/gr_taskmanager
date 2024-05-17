@@ -1,9 +1,9 @@
-.kanbanBoard{
+.kanbanBoard {
     height: 100%;
     display: flex;
 }
 
-.columnContainer{
+.columnContainer {
     display: flex;
     flex-direction: column;
     margin: 1%;
@@ -12,7 +12,7 @@
     flex-grow: 1;
 }
 
-.columnTitle{
+.columnTitle {
     text-align: center;
     display: flex;
     justify-content: space-between;
@@ -24,24 +24,25 @@
     font-weight: 500;
 }
 
-.columnContent{
+.columnContent {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 
 }
 
-.columnTitleText{
+.columnTitleText {
     white-space: nowrap;
     overflow: hidden;
-	text-overflow: ellipsis;
+    text-overflow: ellipsis;
     max-width: 90%;
 }
-.columnTitleCount{
+
+.columnTitleCount {
     margin-left: 5%;
 }
 
-.task{
+.task {
     background-color: rgb(252, 252, 252);
     min-width: 200px;
     min-height: 100px;
@@ -57,7 +58,6 @@
 }
 
 
-.draggable{
+.draggable {
     opacity: 0.7;
 }
-
