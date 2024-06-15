@@ -4,18 +4,26 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import MasterProvider from './providers/MasterProvider';
+import { ApolloClient, ApolloProvider, HttpLink, InMemoryCache } from '@apollo/client';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 
 
-export const Context = React.createContext({})
+const client = new ApolloClient({
+  link: new HttpLink({
+    uri: 'http://localhost:5000/graphql', // замените на ваш URL GraphQL сервера
+  }),
+  cache: new InMemoryCache()
+})
 
 root.render(
+  <ApolloProvider client={client}>
     <MasterProvider>
       <App />
     </MasterProvider>
+  </ApolloProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

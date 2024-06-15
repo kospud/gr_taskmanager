@@ -1,0 +1,12 @@
+schema: "http://localhost:5000/graphql"  
+documents: "src/**/*.graphql"  # Укажите путь к вашим GraphQL документам (запросы и мутации)
+generates:
+  src/types/graphql.ts:
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+    config:
+      avoidOptionals: true
+      maybeValue: 'T | null'
+      nonOptionalTypename: true

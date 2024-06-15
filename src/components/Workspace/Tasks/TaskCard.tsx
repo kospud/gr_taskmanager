@@ -1,30 +1,39 @@
 import { useContext } from "react"
-import { dataBaseTask } from "../../../types"
+import { dataBaseTask } from "../../../types/types"
 import { AuthContext } from "../../../providers/AuthProvider"
 import { CalendarMonth, Person, Task } from "@mui/icons-material"
 import { DatePicker, Select } from "@skbkontur/react-ui"
+import { GetTasksQuery } from "../../../types/graphql"
 
 interface TaskCardProps {
-    task: dataBaseTask
+    task: { __typename: 'Projectstage', 
+        stageId: number, 
+        startDatePlan: string | null, 
+        endDatePlan: string | null, 
+        status: { __typename: 'Stagestatus', statusId: number, statusName: string }, 
+        task: { __typename: 'Task', taskId: number, taskName: string }, 
+        project: { __typename: 'Project', projectId: number, projectName: string }, 
+        user: { __typename: 'User', userId: number, userName: string, userSurname: string } | null 
+        } 
 }
 const TaskCard = ({ task }: TaskCardProps) => {
 
     const users = useContext(AuthContext)![2]
-
+    
     return (
         <div className="taskCard">
-            <div className={`taskStatusline ${task.statusID != 3 ? deadLineHeader(task.endDatePlan) : 'blue'}`}></div>
+            <div className={`taskStatusline ${task.status.statusId != 3 ? deadLineHeader(task.endDatePlan) : 'blue'}`}></div>
             <div className="taskContent">
-                <a className="taskName">{task.taskName}</a>
-                <a className="taskLine"><Task className="icon" />{task.projectName}</a>
+                <a className="taskName">{task.task.taskName}</a>
+                <a className="taskLine"><Task className="icon" />{task.project.projectName}</a>
                 <div className="taskDates">
                     <CalendarMonth className='icon' />
-                    <DatePicker value={dateFormat(task.startDatePlan)} onValueChange={() => { }} />
+                    <DatePicker value={dateFormat(task.startDatePlan)} onValueChange={(value) => {task.startDatePlan=value}} />
                     <DatePicker value={dateFormat(task.endDatePlan)} onValueChange={() => { }} />
                 </div>
                 <div className="taskUser">
                     <Person className="icon" />
-                    <Select className="user" items={users.map(elem => elem.userName)} value={getUserValue(task.userID)}></Select>
+                    <Select className="user"></Select>
                 </div>
             </div>
         </div>

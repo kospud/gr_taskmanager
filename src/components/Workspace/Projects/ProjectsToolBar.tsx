@@ -80,8 +80,6 @@ function NewProjectSidePage({ setOpenFunc, currentType }: NewProjectSidePageProp
     const [endDate, setEndDate] = useState('');
     const { setNewProject } = useContext(ToolBarContext)!
 
-
-
     //Загрузить шаблоны задач
     useEffect(() => {
         setLoading(true);

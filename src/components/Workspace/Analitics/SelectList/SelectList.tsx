@@ -1,6 +1,6 @@
 
 import { StringDecoder } from "string_decoder";
-import { UserListItemState, projectListItemState } from "../../../../types";
+import { UserListItemState, projectListItemState } from "../../../../types/types";
 import './SelectList.css'
 
 type Item = UserListItemState | projectListItemState

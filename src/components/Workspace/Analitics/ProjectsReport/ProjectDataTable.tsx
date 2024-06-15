@@ -1,5 +1,5 @@
 import { DataGrid, GridColDef, GridRowParams } from '@mui/x-data-grid';
-import { dataBaseTask } from '../../../../types';
+import { dataBaseTask } from '../../../../types/types';
 import { useContext } from 'react';
 import { AuthContext } from '../../../../providers/AuthProvider';
 import { projectData } from './ProjectsReport';

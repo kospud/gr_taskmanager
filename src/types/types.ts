@@ -81,10 +81,8 @@ enum taskCardTypes{
 
 export type TaskType = {
     id: UniqueIdentifier, //числовой формат
-    columnId: UniqueIdentifier,//'Сделать' | 'В работе' | 'Завершено'
-    object: dataBaseProject | dataBaseTask | null,
-    dataBaseId: number | [number, number]
-    objectType: string
+    columnId: UniqueIdentifier,
+    object: any
 }
 
 export type dataBaseTask={
@@ -115,3 +113,10 @@ export type dataBaseProject = {
     stageName: string, // 'Новое' | 'Cонграйтинг' | 'Аранжировка' | 'текст' | 'демо' | 'Подготовка к записи' | 'Запись' | 'Сведение' | 'Мастеринг'
     selected: number
 }
+
+interface KanbanBoardContextState{
+    editTaskId: UniqueIdentifier | null
+    setEditTask: Dispatch<UniqueIdentifier | null>
+}
+
+export type KanbanBoardContextType=KanbanBoardContextState | undefined

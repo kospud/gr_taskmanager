@@ -11,6 +11,7 @@ const componentsByName: Record<string, any> = {
     "Projects": <ProjectsReport />,
     "Users": <UsersReport />
 }
+
 const Analytics = () => {
 
     const [active, setActive] = useState('General');

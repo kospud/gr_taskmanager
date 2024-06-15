@@ -1,0 +1,24 @@
+query GetTasks($userId: Float, $projectId: Float) {
+    getTasks(userId: $userId, projectId: $projectId) {
+      stageId,
+      startDatePlan,
+      endDatePlan,
+      status{
+        statusId,statusName
+      }
+      task{
+        taskId,
+        taskName
+      }
+      project{
+        projectId,
+        projectName
+      }
+      user{
+        userId,
+        userName,
+        userSurname
+      }
+    }
+  }
+  

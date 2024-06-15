@@ -3,7 +3,7 @@ import { Button, Modal, Select, Toggle } from '@skbkontur/react-ui';
 import EditIcon from '@mui/icons-material/Edit';
 import PersonIcon from '@mui/icons-material/Person';
 import EventAvailableIcon from '@mui/icons-material/EventAvailable';
-import { dataBaseProject } from "../../../types";
+import { dataBaseProject } from "../../../types/types";
 import { useState } from "react";
 
 interface ProjectCardProps {

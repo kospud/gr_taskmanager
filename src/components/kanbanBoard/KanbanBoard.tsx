@@ -1,12 +1,15 @@
-import { memo, useState } from 'react'
+import { createContext, memo, useEffect, useState } from 'react'
 import './kanbanBoard.css'
-import { Column, TaskType } from '../../types'
+import { Column, KanbanBoardContextType, TaskType } from '../../types/types'
 import ColumnContainer from './column'
 import { DndContext, DragEndEvent, DragMoveEvent, DragOverEvent, DragOverlay, DragStartEvent, PointerSensor, UniqueIdentifier, closestCorners, useSensor, useSensors } from '@dnd-kit/core'
 import { createPortal } from 'react-dom'
 import Task from './Task'
 import { arrayMove } from '@dnd-kit/sortable'
+import { TaskSidePage } from '../Workspace/Tasks/SidePage'
+import { close } from 'inspector'
 
+export const KanbanBoardContext = createContext<KanbanBoardContextType>(undefined)
 
 interface KanbanBoardProps {
     columns: Column[],
@@ -17,6 +20,14 @@ interface KanbanBoardProps {
 const KanbanBoard = memo(({ columns, tasks, setTasks }: KanbanBoardProps) => {
 
     const [activeTask, setActiveTask] = useState<TaskType | null>(null);
+    const [editTaskId, setEditTask] = useState<UniqueIdentifier | null>(null);
+    const [sidePageOpened, setSidePageOpened] = useState(false)
+
+    useEffect(()=>{
+        if(editTaskId){
+            setSidePageOpened(true)
+        }
+    },[editTaskId])
 
     const sensors = useSensors(
         useSensor(PointerSensor, {
@@ -27,27 +38,34 @@ const KanbanBoard = memo(({ columns, tasks, setTasks }: KanbanBoardProps) => {
     );
 
     return (
-        <div className="kanbanBoard">
-            <DndContext
-                sensors={sensors}
-                onDragStart={onDragStart}
-                onDragEnd={onDragEnd}
-                onDragOver={onDragOver}>
-                {
-                    columns.map(column => <ColumnContainer
-                        key={column.id}
-                        column={column}
-                        tasks={tasks.filter(task => task.columnId === column.id)}
-                    ></ColumnContainer>)
-                }
-                <DragOverlay>
-                    {activeTask && <Task className='draggable' task={activeTask} />}
-                </DragOverlay>
+        <KanbanBoardContext.Provider value={{editTaskId, setEditTask}}>
+            <div className="kanbanBoard">
+                <DndContext
+                    sensors={sensors}
+                    onDragStart={onDragStart}
+                    onDragEnd={onDragEnd}
+                    onDragOver={onDragOver}>
+                    {
+                        columns.map(column => <ColumnContainer
+                            key={column.id}
+                            column={column}
+                            tasks={tasks.filter(task => task.columnId === column.id)}
+                        ></ColumnContainer>)
+                    }
+                    <DragOverlay>
+                        {activeTask && <Task className='draggable' task={activeTask} />}
+                    </DragOverlay>
 
-            </DndContext>
-        </div >
+                </DndContext>
+            </div >
+            {sidePageOpened && <TaskSidePage taskId={editTaskId!} close={close}/>}
+        </KanbanBoardContext.Provider>
     )
 
+    function close(){
+        setEditTask(null)
+        setSidePageOpened(false)
+    }
 
     function onDragStart(event: DragStartEvent) {
 
@@ -62,15 +80,12 @@ const KanbanBoard = memo(({ columns, tasks, setTasks }: KanbanBoardProps) => {
         setActiveTask(null);
 
         const { active, over } = event;
-        console.log(active)
+
         if (!over) return;
 
         const activeId = active.id;
         const overId = over.id;
-        const activeType = active.data.current?.type;
-        const overType = active.data.current?.type;
-
-        if (activeId === overId) return;
+        //if (activeId === overId) return;
 
         console.log("DRAG END");
     }

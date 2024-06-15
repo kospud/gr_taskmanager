@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { REPORTS_GENERAL } from '../../../../utils/consts';
 import { Tabs, Toast } from '@skbkontur/react-ui';
-import { dataBaseTask } from '../../../../types';
+import { dataBaseTask } from '../../../../types/types';
 import Loader from '../../../Loader/Loader';
 import GeneralDataTable from './GeneralDataTable';
 Chart.register(ArcElement, Title, Legend, Tooltip);

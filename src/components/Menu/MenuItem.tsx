@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { MenuItemProps } from "../../types"
+import { MenuItemProps } from "../../types/types"
 import { SvgIcon } from "@mui/material";
 import { memo } from "react";
 

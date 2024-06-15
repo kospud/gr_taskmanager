@@ -1,6 +1,6 @@
 import { SortableContext } from "@dnd-kit/sortable";
 import { useDroppable } from "@dnd-kit/core";
-import type { Column, TaskType } from "../../types"
+import type { Column, TaskType } from "../../types/types"
 import Task from "./Task";
 import { useEffect, useMemo, useState } from "react";
 
