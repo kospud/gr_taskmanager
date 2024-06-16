@@ -8,6 +8,7 @@ import { arrayMove } from '@dnd-kit/sortable'
 import { TaskSidePage } from '../Workspace/Tasks/SidePage'
 import { UpdateStageInput, useUpdateStageMutation } from '../../types/graphql'
 import { Toast } from '@skbkontur/react-ui'
+import { ApolloError } from '@apollo/client'
 
 export const KanbanBoardContext = createContext<KanbanBoardContextType>(undefined)
 
@@ -39,8 +40,11 @@ const KanbanBoard = memo(({ columns, tasks, setTasks }: KanbanBoardProps) => {
     );
 
     useEffect(() => {
-        if (updateStageError)
+        if (updateStageError) {
             Toast.push(updateStageError.message, null, 1500)
+            setTasks(prevTasks => { return prevTasks })
+        }
+
     }, [updateStageError])
 
     return (
@@ -75,24 +79,35 @@ const KanbanBoard = memo(({ columns, tasks, setTasks }: KanbanBoardProps) => {
 
     async function updateStageFunc(stage: UpdateStageInput) {
 
-        const result = await updateStage({
-            variables: {
-                data: {
-                    ...stage
+        try {
+            const result = await updateStage({
+                variables: {
+                    data: {
+                        ...stage
+                    }
                 }
-            }
-        })
-
-        const data = result.data
-        if (data) {
-            const updateStage=data.updateStage
-            const index=tasks.findIndex(task=>task.id===updateStage.stageId)
-            setTasks(prevTask=>{
-                prevTask[index].object=updateStage
-                prevTask[index].columnId=columns.find(col=>col.dataBaseId===updateStage.statusId)!.id
-                return prevTask
             })
+
+            const data = result.data
+            if (data) {
+                const updateStage = data.updateStage
+                const index = tasks.findIndex(task => task.id === updateStage.stageId)
+                setTasks(prevTask => {
+                    prevTask[index].object = updateStage
+                    prevTask[index].columnId = columns.find(col => col.dataBaseId === updateStage.statusId)!.id
+                    return prevTask
+                })
+            }
+        } catch (error: any) {
+            if (activeTask!==null) {
+                setActiveTask(prevTask => {
+                    prevTask!.columnId = columns.find(col => col.dataBaseId === prevTask!.object.statusId)!.id
+                    return prevTask
+                })
+            }
+            Toast.push(error.message, null, 1500)
         }
+
     }
 
     function onDragStart(event: DragStartEvent) {
@@ -103,19 +118,17 @@ const KanbanBoard = memo(({ columns, tasks, setTasks }: KanbanBoardProps) => {
         }
     }
 
-    function onDragEnd(event: DragEndEvent) {
+    async function onDragEnd(event: DragEndEvent) {
 
+        const targetColumnDataBaseId = columns.find(col => col.id === activeTask?.columnId)?.dataBaseId
+        const updateTask: UpdateStageInput = { stageId: activeTask?.id as number, statusId: targetColumnDataBaseId }
+        await updateStageFunc(updateTask)
         setActiveTask(null);
 
         const { active, over } = event;
 
         if (!over) return;
 
-        const activeId = active.id;
-        const overId = over.id;
-        //if (activeId === overId) return;
-
-        console.log("DRAG END");
     }
 
     function onDragOver(event: DragOverEvent) {

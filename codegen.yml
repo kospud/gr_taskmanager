@@ -7,6 +7,6 @@ generates:
       - "typescript-operations"
       - "typescript-react-apollo"
     config:
-      avoidOptionals: true
+      avoidOptionals: false
       maybeValue: 'T | null'
       nonOptionalTypename: true

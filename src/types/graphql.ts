@@ -57,21 +57,21 @@ export type Project = {
 
 export type Projectstage = {
   __typename: 'Projectstage';
-  endDateFact: Maybe<Scalars['String']['output']>;
-  endDatePlan: Maybe<Scalars['String']['output']>;
+  endDateFact?: Maybe<Scalars['String']['output']>;
+  endDatePlan?: Maybe<Scalars['String']['output']>;
   project: Project;
   projectId: Scalars['Int']['output'];
-  stageDescription: Maybe<Scalars['String']['output']>;
+  stageDescription?: Maybe<Scalars['String']['output']>;
   stageId: Scalars['Int']['output'];
   stageNumber: Scalars['Int']['output'];
-  startDateFact: Maybe<Scalars['String']['output']>;
-  startDatePlan: Maybe<Scalars['String']['output']>;
+  startDateFact?: Maybe<Scalars['String']['output']>;
+  startDatePlan?: Maybe<Scalars['String']['output']>;
   status: Stagestatus;
   statusId: Scalars['Int']['output'];
   task: Task;
   taskId: Scalars['Int']['output'];
-  user: Maybe<User>;
-  userId: Maybe<Scalars['Int']['output']>;
+  user?: Maybe<User>;
+  userId?: Maybe<Scalars['Int']['output']>;
 };
 
 export type Query = {
@@ -91,8 +91,8 @@ export type QueryStageArgs = {
 
 
 export type QueryStagesArgs = {
-  projectId: InputMaybe<Scalars['Float']['input']>;
-  userId: InputMaybe<Scalars['Float']['input']>;
+  projectId?: InputMaybe<Scalars['Float']['input']>;
+  userId?: InputMaybe<Scalars['Float']['input']>;
 };
 
 
@@ -114,19 +114,19 @@ export type Task = {
 };
 
 export type UpdateStageInput = {
-  endDatePlan: InputMaybe<Scalars['String']['input']>;
-  stageDescription: InputMaybe<Scalars['String']['input']>;
+  endDatePlan?: InputMaybe<Scalars['String']['input']>;
+  stageDescription?: InputMaybe<Scalars['String']['input']>;
   stageId: Scalars['Int']['input'];
-  startDatePlan: InputMaybe<Scalars['String']['input']>;
-  statusId: InputMaybe<Scalars['Int']['input']>;
-  userId: InputMaybe<Scalars['Int']['input']>;
+  startDatePlan?: InputMaybe<Scalars['String']['input']>;
+  statusId?: InputMaybe<Scalars['Int']['input']>;
+  userId?: InputMaybe<Scalars['Int']['input']>;
 };
 
 export type UpdateUserInput = {
-  userEmail: InputMaybe<Scalars['String']['input']>;
+  userEmail?: InputMaybe<Scalars['String']['input']>;
   userId: Scalars['ID']['input'];
-  userName: InputMaybe<Scalars['String']['input']>;
-  userSurname: InputMaybe<Scalars['String']['input']>;
+  userName?: InputMaybe<Scalars['String']['input']>;
+  userSurname?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type User = {
@@ -151,28 +151,28 @@ export type UpdateStageMutationVariables = Exact<{
 }>;
 
 
-export type UpdateStageMutation = { __typename: 'Mutation', updateStage: { __typename: 'Projectstage', stageId: number, startDatePlan: string | null, endDatePlan: string | null, statusId: number, task: { __typename: 'Task', taskName: string }, project: { __typename: 'Project', projectName: string }, user: { __typename: 'User', userName: string, userSurname: string } | null } };
+export type UpdateStageMutation = { __typename: 'Mutation', updateStage: { __typename: 'Projectstage', stageId: number, startDatePlan?: string | null, endDatePlan?: string | null, statusId: number, task: { __typename: 'Task', taskName: string }, project: { __typename: 'Project', projectName: string }, user?: { __typename: 'User', userName: string, userSurname: string } | null } };
 
-export type TaskInfoFragment = { __typename: 'Projectstage', stageId: number, startDatePlan: string | null, endDatePlan: string | null, statusId: number };
+export type TaskInfoFragment = { __typename: 'Projectstage', stageId: number, startDatePlan?: string | null, endDatePlan?: string | null, statusId: number };
 
 export type UserListDataFragment = { __typename: 'User', userId: number, userName: string, userSurname: string };
 
 export type StageStatusDataFragment = { __typename: 'Stagestatus', statusId: number, statusName: string };
 
 export type GetTasksQueryVariables = Exact<{
-  userId: InputMaybe<Scalars['Float']['input']>;
-  projectId: InputMaybe<Scalars['Float']['input']>;
+  userId?: InputMaybe<Scalars['Float']['input']>;
+  projectId?: InputMaybe<Scalars['Float']['input']>;
 }>;
 
 
-export type GetTasksQuery = { __typename: 'Query', stages: Array<{ __typename: 'Projectstage', stageId: number, startDatePlan: string | null, endDatePlan: string | null, statusId: number, task: { __typename: 'Task', taskName: string }, project: { __typename: 'Project', projectName: string }, user: { __typename: 'User', userName: string, userSurname: string } | null }> };
+export type GetTasksQuery = { __typename: 'Query', stages: Array<{ __typename: 'Projectstage', stageId: number, startDatePlan?: string | null, endDatePlan?: string | null, statusId: number, task: { __typename: 'Task', taskName: string }, project: { __typename: 'Project', projectName: string }, user?: { __typename: 'User', userName: string, userSurname: string } | null }> };
 
 export type LoadTaskCardDataQueryVariables = Exact<{
   id: Scalars['Float']['input'];
 }>;
 
 
-export type LoadTaskCardDataQuery = { __typename: 'Query', stage: { __typename: 'Projectstage', stageDescription: string | null, userId: number | null, stageId: number, startDatePlan: string | null, endDatePlan: string | null, statusId: number, task: { __typename: 'Task', taskName: string }, project: { __typename: 'Project', projectName: string } }, users: Array<{ __typename: 'User', userId: number, userName: string, userSurname: string }>, stageStatuses: Array<{ __typename: 'Stagestatus', statusId: number, statusName: string }> };
+export type LoadTaskCardDataQuery = { __typename: 'Query', stage: { __typename: 'Projectstage', stageDescription?: string | null, userId?: number | null, stageId: number, startDatePlan?: string | null, endDatePlan?: string | null, statusId: number, task: { __typename: 'Task', taskName: string }, project: { __typename: 'Project', projectName: string } }, users: Array<{ __typename: 'User', userId: number, userName: string, userSurname: string }>, stageStatuses: Array<{ __typename: 'Stagestatus', statusId: number, statusName: string }> };
 
 export const TaskInfoFragmentDoc = gql`
     fragment TaskInfo on Projectstage {

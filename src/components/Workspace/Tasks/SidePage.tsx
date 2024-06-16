@@ -43,16 +43,15 @@ interface sidePageProps {
     updateStage: (stage: UpdateStageInput) => void
 }
 
-export interface Stage extends UpdateStageInput {
+export interface Stage {
     __typename: "Projectstage";
     stageDescription: string | null;
+    userId: number | null;
     stageId: number;
     startDatePlan: string | null;
     endDatePlan: string | null;
     statusId: number;
-    userId: number | null
     task: {
-        __typename: "Task";
         taskName: string;
     };
     project: {
@@ -68,7 +67,7 @@ export function TaskSidePage({ close, taskId, updateStage }: sidePageProps) {
     useEffect(() => {
         if (!loading && data) {
             console.log(data.stage)
-            setStage(data.stage)
+            setStage(data.stage as Stage)
             setLoading(false)
         }
         if (error) {
@@ -197,11 +196,4 @@ export function TaskSidePage({ close, taskId, updateStage }: sidePageProps) {
 
         close()
     }
-
-    /*function createInput(stage: Stage):UpdateStageInput{
-        let input: UpdateStageInput={...stage}
-        Object.keys(input).map(key=>{
-            if(key in UpdateStageI)
-        })
-    }*/
 }
