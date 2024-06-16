@@ -2,12 +2,12 @@ import { createContext, memo, useEffect, useState } from 'react'
 import './kanbanBoard.css'
 import { Column, KanbanBoardContextType, TaskType } from '../../types/types'
 import ColumnContainer from './column'
-import { DndContext, DragEndEvent, DragMoveEvent, DragOverEvent, DragOverlay, DragStartEvent, PointerSensor, UniqueIdentifier, closestCorners, useSensor, useSensors } from '@dnd-kit/core'
-import { createPortal } from 'react-dom'
+import { DndContext, DragEndEvent, DragOverEvent, DragOverlay, DragStartEvent, PointerSensor, UniqueIdentifier, useSensor, useSensors } from '@dnd-kit/core'
 import Task from './Task'
 import { arrayMove } from '@dnd-kit/sortable'
 import { TaskSidePage } from '../Workspace/Tasks/SidePage'
-import { close } from 'inspector'
+import { UpdateStageInput, useUpdateStageMutation } from '../../types/graphql'
+import { Toast } from '@skbkontur/react-ui'
 
 export const KanbanBoardContext = createContext<KanbanBoardContextType>(undefined)
 
@@ -22,12 +22,13 @@ const KanbanBoard = memo(({ columns, tasks, setTasks }: KanbanBoardProps) => {
     const [activeTask, setActiveTask] = useState<TaskType | null>(null);
     const [editTaskId, setEditTask] = useState<UniqueIdentifier | null>(null);
     const [sidePageOpened, setSidePageOpened] = useState(false)
+    const [updateStage, { loading: updateStageLoading, data: updateStageData, error: updateStageError }] = useUpdateStageMutation()
 
-    useEffect(()=>{
-        if(editTaskId){
+    useEffect(() => {
+        if (editTaskId) {
             setSidePageOpened(true)
         }
-    },[editTaskId])
+    }, [editTaskId])
 
     const sensors = useSensors(
         useSensor(PointerSensor, {
@@ -37,8 +38,13 @@ const KanbanBoard = memo(({ columns, tasks, setTasks }: KanbanBoardProps) => {
         })
     );
 
+    useEffect(() => {
+        if (updateStageError)
+            Toast.push(updateStageError.message, null, 1500)
+    }, [updateStageError])
+
     return (
-        <KanbanBoardContext.Provider value={{editTaskId, setEditTask}}>
+        <KanbanBoardContext.Provider value={{ editTaskId, setEditTask }}>
             <div className="kanbanBoard">
                 <DndContext
                     sensors={sensors}
@@ -58,13 +64,35 @@ const KanbanBoard = memo(({ columns, tasks, setTasks }: KanbanBoardProps) => {
 
                 </DndContext>
             </div >
-            {sidePageOpened && <TaskSidePage taskId={editTaskId!} close={close}/>}
+            {sidePageOpened && <TaskSidePage taskId={editTaskId!} close={close} updateStage={updateStageFunc} />}
         </KanbanBoardContext.Provider>
     )
 
-    function close(){
+    function close() {
         setEditTask(null)
         setSidePageOpened(false)
+    }
+
+    async function updateStageFunc(stage: UpdateStageInput) {
+
+        const result = await updateStage({
+            variables: {
+                data: {
+                    ...stage
+                }
+            }
+        })
+
+        const data = result.data
+        if (data) {
+            const updateStage=data.updateStage
+            const index=tasks.findIndex(task=>task.id===updateStage.stageId)
+            setTasks(prevTask=>{
+                prevTask[index].object=updateStage
+                prevTask[index].columnId=columns.find(col=>col.dataBaseId===updateStage.statusId)!.id
+                return prevTask
+            })
+        }
     }
 
     function onDragStart(event: DragStartEvent) {

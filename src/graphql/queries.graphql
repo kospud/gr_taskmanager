@@ -1,24 +1,53 @@
+fragment TaskInfo on Projectstage{
+  	stageId,
+    startDatePlan,
+    endDatePlan,
+  	statusId
+}
+
+fragment userListData on User{
+  	userId,
+    userName,
+  	userSurname
+}
+
+fragment stageStatusData on Stagestatus{
+  statusId,
+  statusName
+}
+
 query GetTasks($userId: Float, $projectId: Float) {
-    getTasks(userId: $userId, projectId: $projectId) {
-      stageId,
-      startDatePlan,
-      endDatePlan,
-      status{
-        statusId,statusName
-      }
+    stages(userId: $userId, projectId: $projectId) {
+      ...TaskInfo
       task{
-        taskId,
         taskName
       }
       project{
-        projectId,
         projectName
       }
       user{
-        userId,
         userName,
         userSurname
       }
     }
   }
-  
+
+query LoadTaskCardData($id: Float!){
+  stage(id: $id){
+    ...TaskInfo
+    stageDescription
+    userId
+    task{
+      taskName
+    }
+    project{
+      projectName
+    }
+  }
+  users{
+    ...userListData
+  }
+  stageStatuses{
+   ...stageStatusData
+  }
+}

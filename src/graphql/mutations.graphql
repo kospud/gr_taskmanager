@@ -1,0 +1,15 @@
+mutation UpdateStage ($data: UpdateStageInput!){
+  updateStage(data: $data){
+    ...TaskInfo
+      task{
+        taskName
+      }
+      project{
+        projectName
+      }
+      user{
+        userName,
+        userSurname
+      }
+  }
+}
